@@ -1,6 +1,14 @@
 { config, pkgs, ... }:
 
 {
+
+  fonts.fontconfig.enable = true;
+
+  # pkgs.nerdfonts.package = pkgs.nerdfonts.override {
+  #   fonts = [
+  #     "Hack"
+  #   ];
+  # };
   home = {
     # ...
     packages = with pkgs; [
@@ -9,12 +17,20 @@
       ripgrep
       tmux
       alacritty
+      (nerdfonts.override {
+        fonts = [
+          "Hack"
+        ];
+      })
     ];
   };
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
-  home.username = "developer";
-  home.homeDirectory = "/Users/developer";
+  # home.username = "developer";
+  # home.homeDirectory = "/Users/developer";
+  imports = [
+    ./user.nix
+  ];
 
   xdg.configFile.nvim = {
     source = ./config/nvim;
