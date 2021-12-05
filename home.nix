@@ -63,6 +63,9 @@
     userEmail = "malefaro@gmail.com";
     aliases = {
       prettylog = "...";
+      st = "status";
+      cm = "commit -m";
+      a = "add";
     };
     extraConfig = {
       core = {
