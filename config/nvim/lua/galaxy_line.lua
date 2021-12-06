@@ -309,7 +309,7 @@ gls.mid[2] = { -- filename
 	CurrentFile = {
 		provider = function()
 			-- local path = vim.fn.expand('%:p')
-			local path = vim.fn.expand('%:r')
+			local path = vim.fn.expand('%')
 			-- local path = fileinfo.get_current_file_name()
 			if not path or path == '' then
 				path = "[No Name]"
