@@ -4,13 +4,7 @@
 
   fonts.fontconfig.enable = true;
 
-  # pkgs.nerdfonts.package = pkgs.nerdfonts.override {
-  #   fonts = [
-  #     "Hack"
-  #   ];
-  # };
   home = {
-    # ...
     packages = with pkgs; [
       neovim
       git
@@ -24,6 +18,7 @@
       })
     ];
   };
+
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
   # home.username = "developer";
