@@ -21,8 +21,6 @@
 
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
-  # home.username = "developer";
-  # home.homeDirectory = "/Users/developer";
   imports = [
     ./user.nix
   ];
@@ -72,9 +70,9 @@
       # push = {
       #   default = "simple";
       # };
-      # pull = {
-      #   ff = "only";
-      # };
+      pull = {
+        rebase = false;
+      };
       # init = {
       #   defaultBranch = "main";
       # };
