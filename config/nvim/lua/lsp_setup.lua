@@ -34,7 +34,8 @@ end
 --INSTALL LSP's
 --_______________________________________________________________________
 
-local servers = { 'gopls', 'rust_analyzer', 'jedi_language_server', 'sumneko_lua', 'jsonls'}
+-- local servers = { 'gopls', 'rust_analyzer', 'jedi_language_server', 'sumneko_lua', 'jsonls'}
+local servers = { 'gopls', 'rust_analyzer', 'pyright', 'sumneko_lua', 'jsonls'}
 local lsp_installer_servers = require'nvim-lsp-installer.servers'
 
 for _, srv in ipairs(servers) do
