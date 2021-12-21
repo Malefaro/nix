@@ -91,6 +91,8 @@
       oh-my-zsh = {
         enable = true;
         plugins = [
+          "web-search"
+          "jsontools"
 #            "command-not-found"
 #            "poetry"
         ];

@@ -48,7 +48,8 @@ Plug 'fatih/vim-go'
 
 Plug 'ryanoasis/vim-devicons'
 "Plug 'preservim/nerdcommenter'
-Plug 'terrortylor/nvim-comment'
+" Plug 'terrortylor/nvim-comment'
+Plug 'numToStr/Comment.nvim'
 " Plug 'mhinz/vim-startify'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
@@ -126,6 +127,17 @@ let g:go_code_completion_enabled = 0
 let g:go_doc_keywordprg_enabled = 0
 "-------------------------------------
 
+nmap <C-q> <C-[>
+inoremap <C-q> <C-[>
+nmap <C-s> <C-[>
+
+inoremap <C-s> <C-[>
+vnoremap <C-s> <C-[>
+cnoremap <C-s> <C-[>
+tnoremap <C-s> <C-[>
+onoremap <C-s> <C-[>
+snoremap <C-s> <C-[>
+xnoremap <C-s> <C-[>
 
 " Tagbar
 nmap <F8> :TagbarToggle<CR>
@@ -157,7 +169,7 @@ nmap <silent> <ESC> :nohlsearch<CR>
 
 nnoremap <silent><A-s> :w<CR>:SaveSession<CR>:lua require('lint').try_lint()<CR>
 
-nnoremap <silent><C-s> :w<CR>:SaveSession<CR>:lua require('lint').try_lint()<CR>
+" nnoremap <silent><C-s> :w<CR>:SaveSession<CR>:lua require('lint').try_lint()<CR>
 
 " jump tabs
 map <C-j> <C-W>j

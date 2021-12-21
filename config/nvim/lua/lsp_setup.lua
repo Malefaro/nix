@@ -290,7 +290,24 @@ ts.setup {
 -------------------------------------------------------------------------
 -- nvim_comment
 --_______________________________________________________________________
-require('nvim_comment').setup({line_mapping = "<leader>cc", operator_mapping = "<leader>c"})
+-- require('nvim_comment').setup({line_mapping = "<leader>cc", operator_mapping = "<leader>c"})
+require("Comment").setup {
+    toggler = {
+        ---Line-comment toggle keymap
+        line = '<leader>cc',
+        ---Block-comment toggle keymap
+        block = '<leader>bc',
+    },
+
+    ---LHS of operator-pending mappings in NORMAL + VISUAL mode
+    ---@type table
+    opleader = {
+        ---Line-comment keymap
+        line = '<leader>c',
+        ---Block-comment keymap
+        block = '<leader>b',
+    },
+}
 
 -------------------------------------------------------------------------
 -- rust_tools
