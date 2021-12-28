@@ -133,6 +133,7 @@
         alias hms="home-manager switch"
 
         source $HOME/.exports
+        . "$HOME/.cargo/env"
       '';
   };
 }

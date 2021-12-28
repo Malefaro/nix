@@ -148,9 +148,11 @@ cmp.setup {
   mapping = {
     ['<A-k>'] = cmp.mapping.select_prev_item(),
     ['<A-j>'] = cmp.mapping.select_next_item(),
+    ['<C-k>'] = cmp.mapping.select_prev_item(),
+    ['<C-j>'] = cmp.mapping.select_next_item(),
     --['<A-S-k>'] = cmp.mapping.scroll_docs(-4),
     --['<A-S-j>'] = cmp.mapping.scroll_docs(4),
-    ['<A-Space>'] = cmp.mapping.complete(),
+    ['<C-Space>'] = cmp.mapping.complete(),
     ['<C-e>'] = cmp.mapping.close(),
 	['<CR>'] = cmp.mapping.confirm {
 	  behavior = cmp.ConfirmBehavior.Replace,
@@ -191,7 +193,10 @@ require("bufferline").setup{
 
 map('n', '<A-l>', ":BufferLineCycleNext<CR>", opts)
 map('n', '<A-h>', ":BufferLineCyclePrev<CR>", opts)
+map('n', '<C-l>', ":BufferLineCycleNext<CR>", opts)
+map('n', '<C-h>', ":BufferLineCyclePrev<CR>", opts)
 map('n', '<A-w>', ":bdelete<CR>", opts)
+map('n', '<leader>w', ":bdelete<CR>", opts)
 
 
 -------------------------------------------------------------------------
@@ -206,6 +211,8 @@ require('telescope').setup{
       i = {
 		  ["<A-j>"] = "move_selection_next",
 		  ["<A-k>"] = "move_selection_previous",
+		  ["<C-j>"] = "move_selection_next",
+		  ["<C-k>"] = "move_selection_previous",
 		  -- ["<TAB>"] = "move_selection_next",
 		  -- ["<S-TAB>"] = "move_selection_previous",
       },
@@ -235,6 +242,8 @@ map('n', '<leader>qf', ":lua require'telescope.builtin'.lsp_code_actions(require
 map('n', 'gi', ":lua require'telescope.builtin'.lsp_implementations{}<CR>",opts)
 map('n', '<A-S-f>', ":lua require'telescope.builtin'.live_grep{layout_strategy='vertical', layout_config={preview_height=0.5}}<CR>",opts)
 map('n', '<A-S-o>', ":lua require'telescope.builtin'.find_files{}<CR>",opts)
+map('n', '<leader>ff', ":lua require'telescope.builtin'.live_grep{layout_strategy='vertical', layout_config={preview_height=0.5}}<CR>",opts)
+map('n', '<leader>fo', ":lua require'telescope.builtin'.find_files{}<CR>",opts)
 map('n', '<leader>ql', ":lua require'telescope.builtin'.quickfix{layout_strategy='vertical', layout_config={preview_height=0.5}}<CR>",opts)
 -- <C-d> - preview down
 -- <C-u> - preview up

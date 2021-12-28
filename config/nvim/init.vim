@@ -147,10 +147,14 @@ map <Leader> <Plug>(easymotion-prefix)
 
 inoremap <expr><A-j> pumvisible() ? "\<Down>" : "\<C-n>"
 inoremap <expr><A-k> pumvisible() ? "\<Up>" : "\<C-p>"
+inoremap <expr><C-j> pumvisible() ? "\<Down>" : "\<C-n>"
+inoremap <expr><C-k> pumvisible() ? "\<Up>" : "\<C-p>"
 
 " select in somethink like :Ag, :Files 
 tmap <A-j> <Down>
 tmap <A-k> <Up>
+tmap <C-j> <Down>
+tmap <C-k> <Up>
 
 nmap J 5j
 nmap K 5k
@@ -168,14 +172,13 @@ tnoremap <Esc> <C-\><C-n>
 nmap <silent> <ESC> :nohlsearch<CR>
 
 nnoremap <silent><A-s> :w<CR>:SaveSession<CR>:lua require('lint').try_lint()<CR>
-
-" nnoremap <silent><C-s> :w<CR>:SaveSession<CR>:lua require('lint').try_lint()<CR>
+nnoremap <silent><C-s> :w<CR>:SaveSession<CR>:lua require('lint').try_lint()<CR>
 
 " jump tabs
-map <C-j> <C-W>j
-map <C-k> <C-W>k
-map <C-h> <C-W>h
-map <C-l> <C-W>l
+" map <C-j> <C-W>j
+" map <C-k> <C-W>k
+" map <C-h> <C-W>h
+" map <C-l> <C-W>l
 
 noremap <silent><C-A-j> :resize +3<CR>
 noremap <silent><C-A-k> :resize -3<CR>
