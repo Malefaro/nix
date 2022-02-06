@@ -11,7 +11,6 @@
       git
       ripgrep
       tmux
-      gcc
       alacritty
       (nerdfonts.override {
         fonts = [
