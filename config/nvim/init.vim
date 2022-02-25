@@ -47,6 +47,7 @@ Plug 'EdenEast/nightfox.nvim'
 Plug 'fatih/vim-go'
 
 Plug 'ryanoasis/vim-devicons'
+Plug 'kyazdani42/nvim-web-devicons' " lua
 "Plug 'preservim/nerdcommenter'
 " Plug 'terrortylor/nvim-comment'
 Plug 'numToStr/Comment.nvim'

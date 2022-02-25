@@ -114,6 +114,7 @@
       initExtra = ''
         unset LESS
 
+        export PATH=$PATH:/usr/local/go/bin
         export GOPATH=~/GoLang
         export GOBIN=$GOPATH/bin
         export GOPROXY=""
