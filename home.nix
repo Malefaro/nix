@@ -114,6 +114,7 @@
       initExtra = ''
         unset LESS
 
+        source $HOME/.profile
         export PATH=$PATH:/usr/local/go/bin
         export GOPATH=~/GoLang
         export GOBIN=$GOPATH/bin

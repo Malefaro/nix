@@ -196,7 +196,7 @@ map('n', '<A-h>', ":BufferLineCyclePrev<CR>", opts)
 map('n', '<C-l>', ":BufferLineCycleNext<CR>", opts)
 map('n', '<C-h>', ":BufferLineCyclePrev<CR>", opts)
 map('n', '<A-w>', ":bdelete<CR>", opts)
-map('n', '<leader>w', ":bdelete<CR>", opts)
+map('n', '<leader>w', ":Bdelete<CR>", opts)
 
 
 -------------------------------------------------------------------------
@@ -243,6 +243,7 @@ map('n', 'gi', ":lua require'telescope.builtin'.lsp_implementations{}<CR>",opts)
 map('n', '<A-S-f>', ":lua require'telescope.builtin'.live_grep{layout_strategy='vertical', layout_config={preview_height=0.5}}<CR>",opts)
 map('n', '<A-S-o>', ":lua require'telescope.builtin'.find_files{}<CR>",opts)
 map('n', '<leader>ff', ":lua require'telescope.builtin'.live_grep{layout_strategy='vertical', layout_config={preview_height=0.5}}<CR>",opts)
+map('n', '<leader>fb', ":lua require'telescope.builtin'.buffers{layout_strategy='vertical', layout_config={preview_height=0.5}}<CR>",opts)
 map('n', '<leader>fo', ":lua require'telescope.builtin'.find_files{}<CR>",opts)
 map('n', '<leader>ql', ":lua require'telescope.builtin'.quickfix{layout_strategy='vertical', layout_config={preview_height=0.5}}<CR>",opts)
 -- <C-d> - preview down

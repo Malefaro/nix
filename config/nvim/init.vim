@@ -91,6 +91,8 @@ Plug 'simrat39/rust-tools.nvim'
 Plug 'nvim-lua/popup.nvim'
 Plug 'mhinz/vim-crates'
 Plug 'LnL7/vim-nix'
+Plug 'moll/vim-bbye'
+
 call plug#end()
 
 let g:fugitive_gitlab_domains = ['https://git.cryptology.com']
