@@ -66,6 +66,17 @@ lsp_installer.on_server_ready(function(server)
 	if server.name == "gopls" then
 		opts.cmd = {"gopls"} -- gopls installed in gobin path
 	end
+    if server.name == "pyright" then
+        opts.settings = {
+            python = {
+                analysis = {
+                  typeCheckingMode = "basic",
+                  autoSearchPaths = true,
+                  useLibraryCodeForTypes = true
+                }
+            }
+        }
+    end
     if server.name =="rust_analyzer" then
         require("rust-tools").setup {
             -- The "server" property provided in rust-tools setup function are the
