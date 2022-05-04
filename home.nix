@@ -1,5 +1,23 @@
 { config, pkgs, ... }:
 
+let
+  overlayedPkgs = import <nixpkgs> {
+    overlays = [
+      (self: super: {
+        neovim-unwrapped = super.neovim-unwrapped.overrideAttrs (_: rec {
+          version = "0.6.0";
+          src = pkgs.fetchFromGitHub {
+            owner = "neovim";
+            repo = "neovim";
+            rev = "v0.6.0";
+            sha256 = "sha256-mVVZiDjAsAs4PgC8lHf0Ro1uKJ4OKonoPtF59eUd888=";
+          };
+        # src = builtins.fetchTarball https://github.com/neovim/neovim/releases/download/v0.6.0/nvim-linux64.tar.gz;
+        });
+      })
+    ];
+  };
+in
 {
 
   fonts.fontconfig.enable = true;
@@ -17,7 +35,7 @@
           "Hack"
         ];
       })
-    ];
+    ]; # ++ [overplayedPkgs.neovim];
   };
 
   # Home Manager needs a bit of information about you and the
@@ -51,6 +69,7 @@
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
   # programs.zsh.enable = true;
+
   programs.git = {
     enable = true;
     userName = "Danil Anokhin";
