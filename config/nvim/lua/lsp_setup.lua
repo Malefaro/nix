@@ -250,6 +250,25 @@ require('telescope').setup{
     -- builtin picker
   },
   extensions = {
+    ["ui-select"] = {
+          require("telescope.themes").get_cursor {
+            -- even more opts
+          }
+
+          -- pseudo code / specification for writing custom displays, like the one
+          -- for "codeactions"
+          -- specific_opts = {
+          --   [kind] = {
+          --     make_indexed = function(items) -> indexed_items, width,
+          --     make_displayer = function(widths) -> displayer
+          --     make_display = function(displayer) -> function(e)
+          --     make_ordinal = function(e) -> string
+          --   },
+          --   -- for example to disable the custom builtin "codeactions" display
+          --      do the following
+          --   codeactions = false,
+          -- }
+        }
     -- Your extension configuration goes here:
     -- extension_name = {
     --   extension_config_key = value,
@@ -257,8 +276,11 @@ require('telescope').setup{
     -- please take a look at the readme of the extension you want to configure
   }
 }
+require("telescope").load_extension("ui-select")
+
 map('n', 'gr', ":lua require'telescope.builtin'.lsp_references{layout_strategy='vertical', layout_config={preview_height=0.7}}<CR>",opts)
-map('n', '<leader>qf', ":lua require'telescope.builtin'.lsp_code_actions(require'telescope.themes'.get_cursor())<CR>",opts)
+-- map('n', '<leader>qf', ":lua require'telescope.builtin'.lsp_code_actions(require'telescope.themes'.get_cursor())<CR>",opts)
+map('n', '<leader>qf', ":lua vim.lsp.buf.code_action()<CR>",opts)
 map('n', 'gi', ":lua require'telescope.builtin'.lsp_implementations{}<CR>",opts)
 map('n', '<A-S-f>', ":lua require'telescope.builtin'.live_grep{layout_strategy='vertical', layout_config={preview_height=0.5}}<CR>",opts)
 map('n', '<A-S-o>', ":lua require'telescope.builtin'.find_files{}<CR>",opts)
