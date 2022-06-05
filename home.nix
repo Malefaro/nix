@@ -30,6 +30,7 @@ in
       ripgrep
       tmux
       alacritty
+      lldb
       (nerdfonts.override {
         fonts = [
           "Hack"
