@@ -118,7 +118,7 @@ if has('nvim')
   autocmd BufRead Cargo.toml call crates#toggle()
 endif
 " command RustSetInlayHints :lua require("rust-tools.inlay_hints").set_inlay_hints{}<CR>
-autocmd CursorHold,CursorHoldI,BufEnter,BufWinEnter,TabEnter,CursorMoved,CursorMovedI *.rs :lua require'rust-tools.inlay_hints'.set_inlay_hints()
+autocmd CursorHold,CursorHoldI,BufEnter,BufWinEnter,TabEnter, BufWritePost *.rs :lua require'rust-tools.inlay_hints'.set_inlay_hints()
 " colorscheme dracula
 "colorscheme monokai
 " colorscheme onedark
