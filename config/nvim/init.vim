@@ -244,9 +244,9 @@ lua <<EOF
 -- 	lualine_c = {{'filename', path=1}}
 -- 	}
 -- })
-require("transparent").setup({
-  enable = true,
-})
+-- require("transparent").setup({
+--   enable = true,
+-- })
 
 local widgets = require('dap.ui.widgets')
 local scopes_sidebar = widgets.sidebar(widgets.scopes, {}, "45 vsplit")

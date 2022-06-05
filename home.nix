@@ -17,10 +17,12 @@ let
       })
     ];
   };
+  extraPkgs = if pkgs.stdenv.isLinux then [pkgs.lldb] else [];
 in
 {
 
   fonts.fontconfig.enable = true;
+
 
   home = {
     packages = with pkgs; [
@@ -30,13 +32,14 @@ in
       ripgrep
       tmux
       alacritty
-      lldb
+      # lldb
       (nerdfonts.override {
         fonts = [
           "Hack"
         ];
       })
-    ]; # ++ [overplayedPkgs.neovim];
+    ]++extraPkgs;
+    # ];  ++ [overplayedPkgs.neovim];
   };
 
   # Home Manager needs a bit of information about you and the
