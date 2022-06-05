@@ -79,6 +79,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'shumphrey/fugitive-gitlab.vim'
 Plug 'hoob3rt/lualine.nvim'
 Plug 'glepnir/galaxyline.nvim' , {'branch': 'main'}
+Plug 'feline-nvim/feline.nvim'
 " debugger
 Plug 'mfussenegger/nvim-dap'
 " tests

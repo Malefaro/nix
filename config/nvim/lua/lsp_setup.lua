@@ -422,7 +422,7 @@ nightfox.setup({
 
 -- Load the configuration set above and apply the colorscheme
 -- nightfox.load()
-vim.cmd("colorscheme nightfox")
+vim.cmd("colorscheme dayfox")
 
 -------------------------------------------------------------------------
 -- lualine
