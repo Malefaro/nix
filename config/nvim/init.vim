@@ -57,6 +57,7 @@ Plug 'morhetz/gruvbox'
 Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'crusoexia/vim-monokai'
 Plug 'joshdick/onedark.vim'
+Plug 'sonph/onehalf', { 'rtp': 'vim' }
 Plug 'EdenEast/nightfox.nvim'
 
 " vim-go for GoAddTags, GoImpl etc
