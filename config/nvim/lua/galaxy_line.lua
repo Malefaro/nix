@@ -161,7 +161,7 @@ end
 
 local mode_colours = generate_mode_colours()
 
-highlight("GalaxySearchResult", mix_colours(colours.yellow, colours.black, 50), colours.yellow)
+-- highlight("GalaxySearchResult", mix_colours(colours.yellow, colours.black, 50), colours.yellow)
 highlight("GalaxyTrailing", mix_colours(colours.red, colours.white, 30), colours.red)
 hi_link("GalaxyInnerSeparator1", "GalaxySection1")
 hi_link("GalaxyInnerSeparator2", "GalaxySection2")
@@ -220,28 +220,30 @@ gls.left[1] = {
 			if search_results then
 				highlight("GalaxySearchResultEdge", colours.yellow, c.main_bg)
 				highlight("GalaxyTrailingEdge", colours.red, colours.yellow)
+                -- highlight("GalaxySearchResult", colours.yellow, c.main_bg)
 			else
 				highlight("GalaxyTrailingEdge", colours.red, c.main_bg)
 			end
 
 			-- highlight("GalaxylineFillSection", c.dimmer_bg, c.dimmer_bg)
-			-- highlight("StatusLine", c.dimmer_bg, c.dimmer_bg)
-			-- highlight("GalaxyMidText", c.dim_fg, c.dimmer_bg)
+			highlight("StatusLine", c.dimmer_bg, c.dimmer_bg)
+			highlight("GalaxyMidText", c.dim_fg, c.dimmer_bg)
 
+            highlight("GalaxySearchResult", mix_colours(colours.black, colours.black, 50), colours.yellow)
 			highlight("GalaxySection1", c.main_fg, c.main_bg)
-			-- highlight("GalaxySection1Edge", c.main_bg, c.dim_bg)
+			highlight("GalaxySection1Edge", c.main_bg, c.dim_bg)
 			highlight("GalaxySection2", c.dim_fg, c.dim_bg)
 			highlight("GalaxySection2Bright", colours.white, c.dim_bg)
-			-- highlight("GalaxySection2Edge", c.dim_bg, c.dimmer_bg)
+			highlight("GalaxySection2Edge", c.dim_bg, c.dimmer_bg)
 
 			highlight("GalaxyViMode", c.main_fg, c.main_bg, "bold")
-			-- highlight("GalaxyFileIcon", fileinfo.get_file_icon_color(), c.dimmer_bg)
-			-- highlight("GalaxyEditIcon", colours.red, c.dimmer_bg)
+			highlight("GalaxyFileIcon", fileinfo.get_file_icon_color(), c.dimmer_bg)
+			highlight("GalaxyEditIcon", colours.red, c.dimmer_bg)
 
 			return '  ' .. alias[vim.fn.mode()] .. ' '
 		end,
-		-- separator = "",
-		separator = "",
+		separator = "",
+		-- separator = "",
 		separator_highlight = "GalaxySection1Edge",
 		highlight = "GalaxySection1",
 		-- highlight = { colours.accent_dark, colours.accent, "bold" },
@@ -291,8 +293,8 @@ gls.left[4] = {
 				return ' ' .. current_function .. ' '
 			end
 		end,
-		-- separator = "",
-		separator = "",
+		separator = "",
+		-- separator = "",
 		separator_highlight = "GalaxySection2Edge",
 		highlight = "GalaxySection2",
 	},
@@ -361,7 +363,7 @@ gls.mid[5] = { -- modified/special icons
 }
 
 -- gls.mid[6] = {
--- 
+--
 --     DiagnosticWarn = {
 --       provider = function()
 --         local n = vim.lsp.diagnostic.get_count(0, 'Warning')
@@ -442,7 +444,10 @@ gls.right[5] = { -- file percent
 		end,
 		highlight = "GalaxySection1",
 		separator = "",
-		separator_highlight = "GalaxyInnerSeparator1",
+		-- separator = "",
+		-- separator_highlight = "GalaxyInnerSeparator1",
+		-- separator_highlight = "GalaxySection1Edge",
+		separator_highlight = "GalaxySection1",
 	},
 }
 
@@ -461,8 +466,8 @@ gls.right[4] = { -- line & column
 			end
 		end,
 		highlight = "GalaxySection1",
-		-- separator = "",
-		separator = "",
+		separator = "",
+		-- separator = "",
 		separator_highlight = "GalaxySection1Edge",
 	},
 }
@@ -506,8 +511,8 @@ gls.right[1] = { -- filetype (eg. python)
 			end
 		end,
 		highlight = "GalaxySection2",
-		-- separator = "",
-		separator = "",
+		separator = "",
+		-- separator = "",
 		separator_highlight = "GalaxySection2Edge",
 	},
 }
