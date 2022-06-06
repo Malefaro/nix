@@ -225,13 +225,14 @@ gls.left[1] = {
 				highlight("GalaxyTrailingEdge", colours.red, c.main_bg)
 			end
 
-			-- highlight("GalaxylineFillSection", c.dimmer_bg, c.dimmer_bg)
+			highlight("GalaxylineFillSection", c.dimmer_bg, c.dimmer_bg)
 			highlight("StatusLine", c.dimmer_bg, c.dimmer_bg)
 			highlight("GalaxyMidText", c.dim_fg, c.dimmer_bg)
 
             highlight("GalaxySearchResult", mix_colours(colours.black, colours.black, 50), colours.yellow)
 			highlight("GalaxySection1", c.main_fg, c.main_bg)
 			highlight("GalaxySection1Edge", c.main_bg, c.dim_bg)
+			highlight("GalaxySection1EdgeIfEnd", c.main_bg, c.dimmer_bg)
 			highlight("GalaxySection2", c.dim_fg, c.dim_bg)
 			highlight("GalaxySection2Bright", colours.white, c.dim_bg)
 			highlight("GalaxySection2Edge", c.dim_bg, c.dimmer_bg)
@@ -324,26 +325,26 @@ gls.mid[2] = { -- filename
 	},
 }
 
-gls.mid[3] = { -- ~ separator
-	Tilde = {
-		provider = function()
-			local file_size = fileinfo.get_file_size()
-			if file_size and file_size ~= '' then
-				return '  ~ '
-			else -- don't show ~ because there is no size following
-				return ' ' -- for spacing edit icon
-			end
-		end,
-		highlight = "GalaxyEditIcon",
-	},
-}
-
-gls.mid[4] = { -- file size
-	FileSize = {
-		provider = fileinfo.get_file_size,
-		highlight = "GalaxyMidText",
-	},
-}
+-- gls.mid[3] = { -- ~ separator
+-- 	Tilde = {
+-- 		provider = function()
+-- 			local file_size = fileinfo.get_file_size()
+-- 			if file_size and file_size ~= '' then
+-- 				return '  ~ '
+-- 			else -- don't show ~ because there is no size following
+-- 				return ' ' -- for spacing edit icon
+-- 			end
+-- 		end,
+-- 		highlight = "GalaxyEditIcon",
+-- 	},
+-- }
+--
+-- gls.mid[4] = { -- file size
+-- 	FileSize = {
+-- 		provider = fileinfo.get_file_size,
+-- 		highlight = "GalaxyMidText",
+-- 	},
+-- }
 
 gls.mid[5] = { -- modified/special icons
 	Modified = {
@@ -468,51 +469,52 @@ gls.right[4] = { -- line & column
 		highlight = "GalaxySection1",
 		separator = "",
 		-- separator = "",
-		separator_highlight = "GalaxySection1Edge",
+		-- separator_highlight = "GalaxySection1Edge",
+		separator_highlight = "GalaxySection1EdgeIfEnd",
 	},
 }
 
-gls.right[3] = { -- encoding (eg. utf-8)
-	Encode = {
-		provider = function()
-			local encoding = vim.bo.fenc
-			if encoding and encoding ~= '' then
-				return ' ' .. encoding .. ' '
-			end
-		end,
-		highlight = "GalaxySection2",
-	},
-}
+-- gls.right[3] = { -- encoding (eg. utf-8)
+-- 	Encode = {
+-- 		provider = function()
+-- 			local encoding = vim.bo.fenc
+-- 			if encoding and encoding ~= '' then
+-- 				return ' ' .. encoding .. ' '
+-- 			end
+-- 		end,
+-- 		highlight = "GalaxySection2",
+-- 	},
+-- }
 
-gls.right[2] = { -- format (eg. unix)
-	Format = {
-		provider = function()
-			local fformat = vim.bo.fileformat
-			local icon
-			if fformat == "unix" then
-				icon = ''
-			elseif fformat == "dos" then
-				icon = ''
-			elseif fformat == "mac" then
-				icon = ''
-			end
-			return ' ' .. icon .. ' '
-		end,
-		highlight = "GalaxySection2Bright",
-	},
-}
+-- gls.right[2] = { -- format (eg. unix)
+-- 	Format = {
+-- 		provider = function()
+-- 			local fformat = vim.bo.fileformat
+-- 			local icon
+-- 			if fformat == "unix" then
+-- 				icon = ''
+-- 			elseif fformat == "dos" then
+-- 				icon = ''
+-- 			elseif fformat == "mac" then
+-- 				icon = ''
+-- 			end
+-- 			return ' ' .. icon .. ' '
+-- 		end,
+-- 		highlight = "GalaxySection2Bright",
+-- 	},
+-- }
 
-gls.right[1] = { -- filetype (eg. python)
-	FileType = {
-		provider = function()
-			local filetype = vim.bo.filetype
-			if filetype and filetype ~= '' then
-				return ' ' .. filetype .. ' '
-			end
-		end,
-		highlight = "GalaxySection2",
-		separator = "",
-		-- separator = "",
-		separator_highlight = "GalaxySection2Edge",
-	},
-}
+-- gls.right[1] = { -- filetype (eg. python)
+-- 	FileType = {
+-- 		provider = function()
+-- 			local filetype = vim.bo.filetype
+-- 			if filetype and filetype ~= '' then
+-- 				return ' ' .. filetype .. ' '
+-- 			end
+-- 		end,
+-- 		highlight = "GalaxySection2",
+-- 		separator = "",
+-- 		-- separator = "",
+-- 		separator_highlight = "GalaxySection2Edge",
+-- 	},
+-- }
