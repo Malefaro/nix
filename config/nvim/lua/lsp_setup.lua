@@ -402,7 +402,7 @@ nightfox.setup({
           styles = {
             comments = "italic", -- change style of comments to be italic
             keywords = "bold", -- change style of keywords to be bold
-            functions = "italic,bold" -- styles can be a comma separated list
+            functions = "bold" -- styles can be a comma separated list
           },
           inverse = {
             -- match_paren = true, -- inverse the highlighting of match_parens
