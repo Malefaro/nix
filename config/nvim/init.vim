@@ -121,6 +121,8 @@ if has('nvim')
 endif
 " command RustSetInlayHints :lua require("rust-tools.inlay_hints").set_inlay_hints{}<CR>
 autocmd CursorHold,CursorHoldI,BufEnter,BufWinEnter,TabEnter, BufWritePost *.rs :lua require'rust-tools.inlay_hints'.set_inlay_hints()
+command RR :RustRunnables
+command RD :RustDebuggables
 " colorscheme dracula
 "colorscheme monokai
 " colorscheme onedark
