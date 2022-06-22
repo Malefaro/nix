@@ -14,7 +14,7 @@ set colorcolumn=119
 " for gitgutter
 set updatetime=100
 
-autocmd TextChanged,TextChangedI <buffer> silent write
+" autocmd TextChanged,TextChangedI <buffer> silent write
 
 set number
 
@@ -119,8 +119,7 @@ let g:fugitive_gitlab_domains = ['https://git.cryptology.com']
 if has('nvim')
   autocmd BufRead Cargo.toml call crates#toggle()
 endif
-" command RustSetInlayHints :lua require("rust-tools.inlay_hints").set_inlay_hints{}<CR>
-autocmd CursorHold,CursorHoldI,BufEnter,BufWinEnter,TabEnter, BufWritePost *.rs :lua require'rust-tools.inlay_hints'.set_inlay_hints()
+
 command RR :RustRunnables
 command RD :RustDebuggables
 " colorscheme dracula

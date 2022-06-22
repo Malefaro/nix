@@ -84,6 +84,9 @@ lsp_installer.on_server_ready(function(server)
             -- We merge the necessary settings from nvim-lsp-installer (server:get_default_options())
             -- with the user's own settings (opts).
             server = vim.tbl_deep_extend("force", server:get_default_options(), opts),
+            tools = {
+                autoSetHints = false,
+            },
         }
         server:attach_buffers()
         -- Only if standalone support is needed
