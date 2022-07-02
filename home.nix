@@ -34,6 +34,8 @@ in
       alacritty
       direnv
       gopls
+      universal-ctags
+      vimPlugins.vim-plug
       (nerdfonts.override {
         fonts = [
           "Hack"
@@ -54,10 +56,6 @@ in
     source = ./config/nvim;
     recursive = true;
   };
-  # xdg.configFile.tmux = {
-  #   source = ./config/tmux;
-  #   recursive = true;
-  # };
   xdg.configFile.alacritty = {
     source = ./config/alacritty;
     recursive = true;
@@ -74,7 +72,6 @@ in
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
-  # programs.zsh.enable = true;
 
   programs.git = {
     enable = true;
@@ -93,15 +90,9 @@ in
       color = {
         ui = true;
       };
-      # push = {
-      #   default = "simple";
-      # };
       pull = {
         rebase = false;
       };
-      # init = {
-      #   defaultBranch = "main";
-      # };
     };
     ignores = [
       ".DS_Store"

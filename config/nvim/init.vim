@@ -65,10 +65,7 @@ Plug 'fatih/vim-go'
 
 Plug 'ryanoasis/vim-devicons'
 Plug 'kyazdani42/nvim-web-devicons' " lua
-"Plug 'preservim/nerdcommenter'
-" Plug 'terrortylor/nvim-comment'
 Plug 'numToStr/Comment.nvim'
-" Plug 'mhinz/vim-startify'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'jiangmiao/auto-pairs'
