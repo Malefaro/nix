@@ -102,7 +102,6 @@ Plug 'nvim-telescope/telescope-ui-select.nvim'
 Plug 'akinsho/bufferline.nvim'
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'kyazdani42/nvim-tree.lua'
-Plug 'rmagatti/auto-session'
 Plug 'mfussenegger/nvim-lint'
 "Plug 'tanvirtin/vgit.nvim'
 " Rust
@@ -194,8 +193,8 @@ tnoremap <Esc> <C-\><C-n>
 
 nmap <silent> <ESC> :nohlsearch<CR>
 
-nnoremap <silent><A-s> :w<CR>:SaveSession<CR>:lua require('lint').try_lint()<CR>
-nnoremap <silent><C-s> :w<CR>:SaveSession<CR>:lua require('lint').try_lint()<CR>
+nnoremap <silent><A-s> :w<CR>:lua require('lint').try_lint()<CR>
+nnoremap <silent><C-s> :w<CR>:lua require('lint').try_lint()<CR>
 
 " jump tabs
 " map <C-j> <C-W>j

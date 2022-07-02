@@ -35,7 +35,7 @@ end
 --_______________________________________________________________________
 
 -- local servers = { 'gopls', 'rust_analyzer', 'jedi_language_server', 'sumneko_lua', 'jsonls'}
-local servers = { 'gopls', 'rust_analyzer', 'pyright', 'sumneko_lua', 'jsonls'}
+local servers = { 'gopls', 'rust_analyzer', 'pyright', 'sumneko_lua'}
 local lsp_installer_servers = require'nvim-lsp-installer.servers'
 
 for _, srv in ipairs(servers) do
@@ -70,8 +70,10 @@ lsp_installer.on_server_ready(function(server)
         opts.settings = {
             python = {
                 analysis = {
-                  typeCheckingMode = "basic",
+                  -- typeCheckingMode = "basic",
+                  typeCheckingMode = "off",
                   autoSearchPaths = true,
+                  strictListInference = true,
                   useLibraryCodeForTypes = true
                 }
             }
@@ -374,10 +376,10 @@ require("Comment").setup {
 -------------------------------------------------------------------------
 -- auto-session
 --_______________________________________________________________________
-vim.o.sessionoptions="blank,buffers,curdir,folds,help,options,tabpages,winsize,resize,winpos,terminal"
-require('auto-session').setup {
-    log_level = 'info',
-}
+-- vim.o.sessionoptions="blank,buffers,curdir,folds,help,options,tabpages,winsize,resize,winpos,terminal"
+-- require('auto-session').setup {
+--     log_level = 'info',
+-- }
 
 -------------------------------------------------------------------------
 -- lint
