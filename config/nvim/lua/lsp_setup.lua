@@ -332,7 +332,7 @@ map('n', "<C-n>", "<cmd>NvimTreeToggle<CR>", opts)
 
 local ts = require('nvim-treesitter.configs')
 ts.setup {
-	ensure_installed = {"python", "go"},
+	ensure_installed = {"python", "go", "rust", "lua"},
 	highlight = {
 		enable = true,
 	}
@@ -392,7 +392,9 @@ require('lint').linters_by_ft = {
 -------------------------------------------------------------------------
 -- galaxyline
 --_______________________________________________________________________
-require("galaxy_line")
+-- require("galaxy_line")
+require("bubbles_line")
+
 
 -------------------------------------------------------------------------
 -- nightfox
@@ -405,7 +407,7 @@ nightfox.setup({
     options = {
           -- fox = "nightfox", -- change the colorscheme to use nordfox
           styles = {
-            comments = "italic", -- change style of comments to be italic
+            -- comments = "italic", -- change style of comments to be italic
             keywords = "bold", -- change style of keywords to be bold
             functions = "bold" -- styles can be a comma separated list
           },
