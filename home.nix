@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 let
   overlayedPkgs = import <nixpkgs> {
@@ -54,10 +54,10 @@ in
     source = ./config/nvim;
     recursive = true;
   };
-  xdg.configFile.tmux = {
-    source = ./config/tmux;
-    recursive = true;
-  };
+  # xdg.configFile.tmux = {
+  #   source = ./config/tmux;
+  #   recursive = true;
+  # };
   xdg.configFile.alacritty = {
     source = ./config/alacritty;
     recursive = true;
@@ -117,8 +117,6 @@ in
         plugins = [
           "web-search"
           "jsontools"
-#            "command-not-found"
-#            "poetry"
         ];
         theme = "agnoster";
       };
@@ -163,5 +161,30 @@ in
         source $HOME/.exports
         . "$HOME/.cargo/env"
       '';
+  };
+  programs.tmux = {
+    enable = true;
+    extraConfig = (lib.strings.fileContents ./config/tmux/tmux.conf);
+    baseIndex = 1;
+    keyMode = "vi";
+    terminal = "xterm-256color";
+    plugins = [
+        {
+			plugin = pkgs.tmuxPlugins.dracula;
+			extraConfig = ''
+set -g @dracula-refresh-rate 5
+set -g @dracula-show-fahrenheit false
+set -g @dracula-plugins "cpu-usage ram-usage time"
+# powerline
+set -g @dracula-show-powerline true
+set -g @dracula-show-left-sep 
+set -g @dracula-show-right-sep 
+# time
+set -g @dracula-military-time true
+set -g @dracula-day-month true
+set -g @dracula-show-timezone false
+			'';
+		}
+    ];
   };
 }
