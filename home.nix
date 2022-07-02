@@ -33,13 +33,15 @@ in
       tmux
       alacritty
       direnv
+      gopls
       (nerdfonts.override {
         fonts = [
           "Hack"
+          "JetBrainsMono"
         ];
       })
     ]++extraPkgs;
-    # ];  ++ [overplayedPkgs.neovim];
+    # ];  ++ [overlayedPkgs.neovim];
   };
 
   # Home Manager needs a bit of information about you and the
