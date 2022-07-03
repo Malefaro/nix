@@ -105,6 +105,8 @@ Plug 'mfussenegger/nvim-lint'
 Plug 'simrat39/rust-tools.nvim'
 Plug 'nvim-lua/popup.nvim'
 Plug 'mhinz/vim-crates'
+Plug 'saecki/crates.nvim', { 'tag': 'v0.2.1' }
+
 Plug 'LnL7/vim-nix'
 Plug 'moll/vim-bbye'
 

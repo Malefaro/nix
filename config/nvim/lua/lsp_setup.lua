@@ -442,3 +442,5 @@ vim.cmd("colorscheme nightfox")
 --         lualine_c = {{'filename', path=1}},
 -- 	}
 -- })
+
+require('crates').setup()

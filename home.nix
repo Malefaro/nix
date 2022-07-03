@@ -27,7 +27,6 @@ in
   home = {
     packages = with pkgs; [
       zsh
-      neovim
       git
       ripgrep
       tmux
@@ -35,7 +34,6 @@ in
       direnv
       gopls
       universal-ctags
-      vimPlugins.vim-plug
       (nerdfonts.override {
         fonts = [
           "Hack"
@@ -52,8 +50,8 @@ in
     ./user.nix
   ];
 
-  xdg.configFile.nvim = {
-    source = ./config/nvim;
+  xdg.configFile."nvim/lua" = {
+    source = ./config/nvim/lua;
     recursive = true;
   };
   xdg.configFile.alacritty = {
@@ -72,6 +70,15 @@ in
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
+
+  programs.neovim = {
+    enable = true;
+    # package = overlayedPkgs.neovim-unwrapped;
+    extraConfig = (lib.strings.fileContents ./config/nvim/init.vim);
+    plugins = with pkgs.vimPlugins; [
+      vim-plug
+    ];
+  };
 
   programs.git = {
     enable = true;
