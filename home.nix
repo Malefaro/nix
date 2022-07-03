@@ -170,9 +170,13 @@ in
         {
 			plugin = pkgs.tmuxPlugins.dracula;
 			extraConfig = ''
-set -g @dracula-refresh-rate 5
+set -g @dracula-refresh-rate 1
 set -g @dracula-show-fahrenheit false
 set -g @dracula-plugins "cpu-usage ram-usage time"
+set -g @dracula-cpu-usage true
+set -g @dracula-ram-usage true
+set -g @dracula-show-left-icon session
+set -g @dracula-cpu-display-load true
 # powerline
 set -g @dracula-show-powerline true
 set -g @dracula-show-left-sep 
