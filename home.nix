@@ -34,6 +34,7 @@ in
       direnv
       gopls
       universal-ctags
+      go_1_18
       (nerdfonts.override {
         fonts = [
           "Hack"
@@ -190,4 +191,12 @@ set -g @dracula-show-timezone false
 		}
     ];
   };
+
+  home.file."Applications/home-manager".source = let
+  apps = pkgs.buildEnv {
+    name = "home-manager-applications";
+    paths = config.home.packages;
+    pathsToLink = "/Applications";
+  };
+  in lib.mkIf pkgs.stdenv.targetPlatform.isDarwin "${apps}/Applications";
 }
