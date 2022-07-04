@@ -517,7 +517,7 @@ i = i + 1
 gls.right[i] = {
     LineInfo = {
         provider = "LineColumn",
-        icon = icons.line_nr .. "  ",
+        icon = icons.line_nr .. " ",
         highlight = { colors.white, colors.grey }
     }
 }
