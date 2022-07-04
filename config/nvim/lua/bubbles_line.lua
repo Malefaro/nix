@@ -7,77 +7,78 @@
 local gl = require("galaxyline")
 local gls = gl.section
 local fileinfo = require('galaxyline.provider_fileinfo')
+local vcs = require('galaxyline.provider_vcs')
 
-gl.short_line_list = {'plug', 'fugitive', 'NvimTree', 'vista', 'dbui', 'packer', 'startify', 'coc'}
+gl.short_line_list = { 'plug', 'fugitive', 'NvimTree', 'vista', 'dbui', 'packer', 'startify', 'coc' }
 
 local icons = {
-    sep = {
+    sep          = {
         right = "",
         left = ""
     },
-    diagnostic = {
+    diagnostic   = {
         error = " ",
         warn = " ",
         info = " "
     },
-    diff = {
+    diff         = {
         added = " ",
         modified = " ",
         removed = " "
     },
-    git = "",
-    line_nr = "",
-    file = {
-      read_only = '',
-      -- modified = '⨁ ',
-      -- modified = '✎',
-      modified = "",
+    git          = "",
+    line_nr      = "",
+    file         = {
+        read_only = '',
+        -- modified = '⨁ ',
+        -- modified = '✎',
+        modified = "",
     },
-    normal    = "",
-    insert    = "",
-    command   = "",
-    visual    = "",
-    replace   = "",
-    selection = "",
-    terminal  = "",
+    normal       = "",
+    insert       = "",
+    command      = "",
+    visual       = "",
+    replace      = "",
+    selection    = "",
+    terminal     = "",
     visual_block = ""
     -- terminal  = iconz.get("vim-terminal-mode")
 }
 
 local colors = {
-    main         = "#ff87ff",
-    bg_alt       = "#0B0C15",
-    main_bg      = "#262626",
-    lightbg      = "#21252B",
-    commented    = "#5c6370",
-    grey         = "#3c4048",
-    line_bg      = "#282c34",
-    creamydark   = "#282c34",
-    purple       = "#252930",
-    cyan         = "#00FFFF",
-    nord         = "#81A1C1",
-    lightblue    = "#81a1c1",
-    darkblue     = "#61afef",
-    blue         = "#61afef",
-    limegreen    = "#bbe67e",
-    green        = "#7ed491",
-    fg_green     = "#65a380",
-    creamygreen  = "#a3be8c",
-    yellow       = "#cccc00",
-    creamyorange = "#ff8800",
-    orange       = "#FF8800",
-    bg           = "#000B0C15",
-    fg           = "#D8DEE9",
-    magenta      = "#c678dd",
-    red          = "#df8890",
-    crimsonRed   = "#990000",
-    crimsonRed2  = "#ff4d4d",
-    greenYel     = "#EBCB8B",
-    white        = "#d8dee9",
-    brown        = "#91684a",
-    teal         = '#23D4AC',
-    blue2        = '#5c5c81',
-    icon_inactive= '#9896AA'
+    main          = "#ff87ff",
+    bg_alt        = "#0B0C15",
+    main_bg       = "#262626",
+    lightbg       = "#21252B",
+    commented     = "#5c6370",
+    grey          = "#3c4048",
+    line_bg       = "#282c34",
+    creamydark    = "#282c34",
+    purple        = "#252930",
+    cyan          = "#00FFFF",
+    nord          = "#81A1C1",
+    lightblue     = "#81a1c1",
+    darkblue      = "#61afef",
+    blue          = "#61afef",
+    limegreen     = "#bbe67e",
+    green         = "#7ed491",
+    fg_green      = "#65a380",
+    creamygreen   = "#a3be8c",
+    yellow        = "#cccc00",
+    creamyorange  = "#ff8800",
+    orange        = "#FF8800",
+    bg            = "#000B0C15",
+    fg            = "#D8DEE9",
+    magenta       = "#c678dd",
+    red           = "#df8890",
+    crimsonRed    = "#990000",
+    crimsonRed2   = "#ff4d4d",
+    greenYel      = "#EBCB8B",
+    white         = "#d8dee9",
+    brown         = "#91684a",
+    teal          = '#23D4AC',
+    blue2         = '#5c5c81',
+    icon_inactive = '#9896AA'
 }
 
 local mode_map = {
@@ -85,31 +86,32 @@ local mode_map = {
     -- i      = {" INSERT  ", colors.green},
     -- c      = {" COMMAND ", colors.orange},
     -- v      = {" VISUAL  ", colors.lightblue},
-    n      = {icons.normal    .. "  NORMAL  ", colors.red},
-    no     = {icons.normal    .. "  NORMAL  ", colors.red},
-    i      = {icons.insert    .. "  INSERT  ", colors.green},
-    ic     = {icons.insert    .. "  INSERT  ", colors.green},
-    c      = {icons.command   .. "  COMMAND ", colors.orange},
-    ce     = {icons.command   .. "  COMMAND ", colors.orange},
-    cv     = {icons.command   .. "  COMMAND ", colors.orange},
-    v      = {icons.visual    .. "  VISUAL  ", colors.lightblue},
-    V      = {icons.visual    .. "  VISUAL  ", colors.lightblue},
-    [""] = {icons.visual    .. "  VISUAL" .. icons.visual_block .. " ", colors.brown},
-    R      = {icons.replace   .. "  REPLACE ", colors.crimsonRed2},
-    ['r?'] = {icons.replace   .. "  REPLACE ", colors.lightblue},
-    Rv     = {icons.replace   .. "  REPLACE ", colors.crimsonRed2},
-    r      = {icons.replace   .. "  REPLACE ", colors.blue2},
-    rm     = {icons.replace   .. "  REPLACE ", colors.blue2},
-    s      = {icons.selection .. "  SELECT  ", colors.greenYelenYel},
-    S      = {icons.selection .. "  SELECT  ", colors.greenYelenYel},
-    [''] = {icons.selection .. "  SELECT  ", colors.greenYelenYel},
-    t      = {icons.terminal  .. "  TERMINAL ", colors.magenta},
-    ['!']  = {                  "  !        ", colors.crimsonRed}
+    n      = { icons.normal .. "  NORMAL  ", colors.red },
+    no     = { icons.normal .. "  NORMAL  ", colors.red },
+    i      = { icons.insert .. "  INSERT  ", colors.green },
+    ic     = { icons.insert .. "  INSERT  ", colors.green },
+    c      = { icons.command .. "  COMMAND ", colors.orange },
+    ce     = { icons.command .. "  COMMAND ", colors.orange },
+    cv     = { icons.command .. "  COMMAND ", colors.orange },
+    v      = { icons.visual .. "  VISUAL  ", colors.lightblue },
+    V      = { icons.visual .. "  VISUAL  ", colors.lightblue },
+    [""]  = { icons.visual .. "  VISUAL" .. icons.visual_block .. " ", colors.brown },
+    R      = { icons.replace .. "  REPLACE ", colors.crimsonRed2 },
+    ['r?'] = { icons.replace .. "  REPLACE ", colors.lightblue },
+    Rv     = { icons.replace .. "  REPLACE ", colors.crimsonRed2 },
+    r      = { icons.replace .. "  REPLACE ", colors.blue2 },
+    rm     = { icons.replace .. "  REPLACE ", colors.blue2 },
+    s      = { icons.selection .. "  SELECT  ", colors.greenYelenYel },
+    S      = { icons.selection .. "  SELECT  ", colors.greenYelenYel },
+    ['']  = { icons.selection .. "  SELECT  ", colors.greenYelenYel },
+    t      = { icons.terminal .. "  TERMINAL ", colors.magenta },
+    ['!']  = { "  !        ", colors.crimsonRed }
 }
 
 ----------------------------=== Funcs ===--------------------------
 
 local function mode_label() return mode_map[vim.fn.mode()][1] or 'N/A' end
+
 local function mode_hl() return mode_map[vim.fn.mode()][2] or colors.main end
 
 local function highlight1(group, fg, gui)
@@ -157,7 +159,7 @@ CocStatus = get_diagnostic_info
 CocFunc = get_function_info
 
 local checkwidth = function()
-    local squeeze_width  = vim.fn.winwidth(0) / 2
+    local squeeze_width = vim.fn.winwidth(0) / 2
     if squeeze_width > 40 then
         return true
     end
@@ -169,9 +171,9 @@ local function file_name(is_active, highlight_group)
     local modified_fg = is_active and "#ff0000" or "#cc8800"
     if vim.bo.modifiable then
         if vim.bo.modified then
-            vim.api.nvim_command('hi ' .. highlight_group .. ' guifg='.. modified_fg .. ' gui=bold')
+            vim.api.nvim_command('hi ' .. highlight_group .. ' guifg=' .. modified_fg .. ' gui=bold')
         else
-            vim.api.nvim_command('hi ' .. highlight_group .. ' guifg='.. normal_fg .. ' gui=NONE')
+            vim.api.nvim_command('hi ' .. highlight_group .. ' guifg=' .. normal_fg .. ' gui=NONE')
         end
     end
     local fname = fileinfo.get_current_file_name(icons.file.modified, icons.file.read_only)
@@ -246,12 +248,12 @@ gls.left[i] = {
 
 i = i + 1
 gls.left[i] = {
-	FileIcon = {
-       provider = "FileIcon",
-       separator = " ",
-       separator_highlight = {colors.white, colors.white},
-       highlight = {colors.creamydark, colors.white}
-   }
+    FileIcon = {
+        provider = "FileIcon",
+        separator = " ",
+        separator_highlight = { colors.white, colors.white },
+        highlight = { colors.creamydark, colors.white }
+    }
 }
 
 i = i + 1
@@ -259,7 +261,7 @@ gls.left[i] = {
     FileName = {
         provider = function() return file_name(true, 'GalaxyFileName') end,
         condition = require('galaxyline.condition').buffer_not_empty,
-        highlight = {colors.creamydark, colors.white},
+        highlight = { colors.creamydark, colors.white },
     }
 }
 
@@ -270,7 +272,7 @@ gls.left[i] = {
             return ""
         end,
         separator = "",
-        highlight = {colors.white, colors.main_bg}
+        highlight = { colors.white, colors.main_bg }
     }
 }
 
@@ -278,7 +280,7 @@ i = i + 1
 gls.left[i] = {
     Space = {
         provider = white_space,
-        highlight = {colors.bg, colors.main_bg}
+        highlight = { colors.bg, colors.main_bg }
     }
 }
 i = i + 1
@@ -286,8 +288,8 @@ gls.left[i] = {
     DiagnosticError = {
         provider = "DiagnosticError",
         -- icon = "   ",
-        icon = "  " .. icons.diagnostic.error .. "  ",
-        highlight = {colors.red, colors.main_bg}
+        icon = " " .. icons.diagnostic.error .. "",
+        highlight = { colors.red, colors.main_bg }
     }
 }
 
@@ -295,7 +297,7 @@ i = i + 1
 gls.left[i] = {
     Space = {
         provider = white_space,
-        highlight = {colors.bg, colors.main_bg},
+        highlight = { colors.bg, colors.main_bg },
         condition = function()
             return require('galaxyline.provider_diagnostic').get_diagnostic_error() ~= ''
         end
@@ -307,8 +309,8 @@ gls.left[i] = {
     DiagnosticWarn = {
         provider = "DiagnosticWarn",
         -- icon = "   ",
-        icon = "  " .. icons.diagnostic.warn .. "  ",
-        highlight = {colors.yellow, colors.main_bg}
+        icon = " " .. icons.diagnostic.warn .. "",
+        highlight = { colors.yellow, colors.main_bg }
     }
 }
 
@@ -316,7 +318,7 @@ i = i + 1
 gls.left[i] = {
     Space = {
         provider = white_space,
-        highlight = {colors.bg, colors.main_bg},
+        highlight = { colors.bg, colors.main_bg },
         condition = function()
             return require('galaxyline.provider_diagnostic').get_diagnostic_warn() ~= ''
         end
@@ -328,8 +330,8 @@ gls.left[i] = {
     DiagnosticInfo = {
         provider = "DiagnosticInfo",
         -- icon = "   ",
-        icon = "  " .. icons.diagnostic.info .. "  ",
-        highlight = {colors.blue, colors.main_bg}
+        icon = " " .. icons.diagnostic.info .. "",
+        highlight = { colors.blue, colors.main_bg }
     }
 }
 
@@ -337,7 +339,7 @@ i = i + 1
 gls.left[i] = {
     Space = {
         provider = white_space,
-        highlight = {colors.bg, colors.main_bg},
+        highlight = { colors.bg, colors.main_bg },
         condition = function()
             return require('galaxyline.provider_diagnostic').get_diagnostic_info() ~= ''
         end
@@ -348,7 +350,7 @@ i = i + 1
 gls.left[i] = {
     Space = {
         provider = white_space,
-        highlight = {colors.bg, colors.main_bg},
+        highlight = { colors.bg, colors.main_bg },
         condition = function()
             return require('galaxyline.provider_diagnostic').get_diagnostic_info() ~= ''
         end
@@ -359,8 +361,8 @@ i = i + 1
 gls.left[i] = {
     DiagnosticHint = {
         provider = "DiagnosticHint",
-        icon = "    ",
-        highlight = {colors.blue, colors.main_bg}
+        icon = " ",
+        highlight = { colors.blue, colors.main_bg }
     }
 }
 
@@ -375,8 +377,8 @@ gls.left[i] = {
             end
         end,
         separator = ' ',
-        separator_highlight = {colors.main_bg, colors.main_bg},
-        highlight = {colors.blue, colors.main_bg},
+        separator_highlight = { colors.main_bg, colors.main_bg },
+        highlight = { colors.blue, colors.main_bg },
     }
 }
 
@@ -390,7 +392,7 @@ gls.left[i] = {
                 return ''
             end
         end,
-        highlight = {colors.blue, colors.main_bg},
+        highlight = { colors.blue, colors.main_bg },
     }
 }
 
@@ -419,8 +421,8 @@ gls.right[i] = {
         provider = "DiffAdd",
         condition = check_git_width,
         -- icon = "   ",
-        icon = "  " .. icons.diff.added .. " ",
-        highlight = {colors.greenYel, colors.main_bg}
+        icon = " " .. icons.diff.added .. "",
+        highlight = { colors.greenYel, colors.main_bg }
     }
 }
 
@@ -430,8 +432,8 @@ gls.right[i] = {
         provider = "DiffModified",
         condition = check_git_width,
         -- icon = "  柳",
-        icon = "  " .. icons.diff.modified .. " ",
-        highlight = {colors.creamyorange, colors.main_bg}
+        icon = " " .. icons.diff.modified .. "",
+        highlight = { colors.creamyorange, colors.main_bg }
     }
 }
 i = i + 1
@@ -440,21 +442,21 @@ gls.right[i] = {
         provider = "DiffRemove",
         condition = check_git_width,
         -- icon = "   ",
-        icon = "  " .. icons.diff.removed .. " ",
-        highlight = {colors.red, colors.main_bg}
+        icon = " " .. icons.diff.removed .. "",
+        highlight = { colors.red, colors.main_bg }
     }
 }
 
 i = i + 1
 gls.right[i] = {
     right_LeftRounded1 = {
-		separator = " ",
-        separator_highlight = {colors.main_bg, colors.main_bg},
+        separator = " ",
+        separator_highlight = { colors.main_bg, colors.main_bg },
         provider = function()
             return ""
         end,
         condition = require("galaxyline.condition").check_git_workspace,
-        highlight = {colors.blue2, colors.main_bg}
+        highlight = { colors.blue2, colors.main_bg }
     }
 }
 
@@ -465,16 +467,24 @@ gls.right[i] = {
             return icons.git .. ' '
         end,
         condition = check_git_terminal_workspace,
-        highlight = {colors.white, colors.blue2}
+        highlight = { colors.white, colors.blue2 }
     }
 }
 
 i = i + 1
 gls.right[i] = {
     GitBranch = {
-        provider = "GitBranch",
+        -- provider = "GitBranch",
+        provider = function()
+            local branch = vcs.get_git_branch()
+            local suffix = ""
+            if string.len(branch) > 20 then
+                suffix = "..."
+            end
+            return string.sub(branch, 1, 20) .. suffix
+        end,
         condition = require("galaxyline.condition").check_git_workspace,
-        highlight = {colors.white, colors.blue2},
+        highlight = { colors.white, colors.blue2 },
     }
 }
 
@@ -483,7 +493,7 @@ gls.right[i] = {
     Space2 = {
         provider = white_space,
         condition = require("galaxyline.condition").check_git_workspace,
-        highlight = {colors.blue2, colors.blue2},
+        highlight = { colors.blue2, colors.blue2 },
     }
 }
 
@@ -495,9 +505,9 @@ gls.right[i] = {
         end,
         highlight = function()
             if require("galaxyline.condition").check_git_workspace() then
-                return {colors.grey, colors.blue2}
+                return { colors.grey, colors.blue2 }
             else
-                return {colors.grey, colors.main_bg}
+                return { colors.grey, colors.main_bg }
             end
         end
     }
@@ -508,7 +518,7 @@ gls.right[i] = {
     LineInfo = {
         provider = "LineColumn",
         icon = icons.line_nr .. "  ",
-        highlight = {colors.white, colors.grey}
+        highlight = { colors.white, colors.grey }
     }
 }
 
@@ -517,8 +527,8 @@ gls.right[i] = {
     PerCent = {
         provider = "LinePercent",
         separator = " ",
-        separator_highlight = {colors.white, colors.grey},
-        highlight = {colors.white, colors.grey}
+        separator_highlight = { colors.white, colors.grey },
+        highlight = { colors.white, colors.grey }
     }
 }
 
@@ -528,7 +538,7 @@ gls.right[i] = {
         provider = function()
             return ""
         end,
-        highlight = {colors.grey, colors.bg}
+        highlight = { colors.grey, colors.bg }
     }
 }
 
@@ -536,26 +546,26 @@ gls.right[i] = {
 
 local k = 1
 gls.short_line_left[k] = {
-  SFirstElement = {
-    provider = function() return icons.sep.right end,
-    highlight = { colors.grey, 'NONE' },
-  },
-}
-
-k = k + 1
-gls.short_line_left[k] ={
-  SFileIcon = {
-    provider = 'FileIcon',
-    highlight = { colors.icon_inactive, colors.grey },
-  },
+    SFirstElement = {
+        provider = function() return icons.sep.right end,
+        highlight = { colors.grey, 'NONE' },
+    },
 }
 
 k = k + 1
 gls.short_line_left[k] = {
-  SMyFileName = {
-    provider = function() return file_name(false, 'GalaxySMyFileName') end,
-    highlight = {colors.red, colors.grey},
-    separator = icons.sep.left,
-    separator_highlight = {colors.grey, colors.main_bg}
-  }
+    SFileIcon = {
+        provider = 'FileIcon',
+        highlight = { colors.icon_inactive, colors.grey },
+    },
+}
+
+k = k + 1
+gls.short_line_left[k] = {
+    SMyFileName = {
+        provider = function() return file_name(false, 'GalaxySMyFileName') end,
+        highlight = { colors.red, colors.grey },
+        separator = icons.sep.left,
+        separator_highlight = { colors.grey, colors.main_bg }
+    }
 }
