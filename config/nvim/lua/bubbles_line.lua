@@ -483,7 +483,15 @@ gls.right[i] = {
             end
             return string.sub(branch, 1, 20) .. suffix
         end,
-        condition = require("galaxyline.condition").check_git_workspace,
+        -- condition = require("galaxyline.condition").check_git_workspace,
+        condition = function()
+            local function is_empty()
+                return vcs.get_git_branch() ~= nil
+            end
+
+            return require("galaxyline.condition").check_git_workspace() and
+                require("galaxyline.condition").hide_in_width() and is_empty()
+        end,
         highlight = { colors.white, colors.blue2 },
     }
 }

@@ -349,24 +349,27 @@ require('telescope').setup {
 require("telescope").load_extension("ui-select")
 
 map('n', 'gr',
-    ":lua require'telescope.builtin'.lsp_references{layout_strategy='vertical', layout_config={preview_height=0.7}}<CR>"
+    ":lua require'telescope.builtin'.lsp_references{fname_width=70, layout_strategy='vertical', layout_config={preview_height=0.7}}<CR>"
     , opts)
 map('n', '<leader>fd',
-    ":lua require'telescope.builtin'.diagnostics{layout_strategy='vertical', layout_config={preview_height=0.7}}<CR>",
+    ":lua require'telescope.builtin'.diagnostics{fname_width=70,layout_strategy='vertical', layout_config={preview_height=0.7}}<CR>"
+    ,
     opts)
 -- map('n', '<leader>qf', ":lua require'telescope.builtin'.lsp_code_actions(require'telescope.themes'.get_cursor())<CR>",opts)
 map('n', '<leader>qf', ":lua vim.lsp.buf.code_action()<CR>", opts)
-map('n', 'gi', ":lua require'telescope.builtin'.lsp_implementations{}<CR>", opts)
-map('n', '<A-S-f>',
-    ":lua require'telescope.builtin'.live_grep{layout_strategy='vertical', layout_config={preview_height=0.5}}<CR>", opts)
-map('n', '<A-S-o>', ":lua require'telescope.builtin'.find_files{}<CR>", opts)
+map('n', 'gi',
+    ":lua require'telescope.builtin'.lsp_implementations{fname_width=70,layout_strategy='vertical', layout_config={preview_height=0.7}}<CR>"
+    , opts)
 map('n', '<leader>ff',
-    ":lua require'telescope.builtin'.live_grep{layout_strategy='vertical', layout_config={preview_height=0.5}}<CR>", opts)
+    ":lua require'telescope.builtin'.live_grep{fname_width=70,layout_strategy='vertical', layout_config={preview_height=0.5}}<CR>"
+    , opts)
 map('n', '<leader>fb',
-    ":lua require'telescope.builtin'.buffers{layout_strategy='vertical', layout_config={preview_height=0.5}}<CR>", opts)
+    ":lua require'telescope.builtin'.buffers{fname_width=70,layout_strategy='vertical', layout_config={preview_height=0.5}}<CR>"
+    , opts)
 map('n', '<leader>fo', ":lua require'telescope.builtin'.find_files{}<CR>", opts)
 map('n', '<leader>ql',
-    ":lua require'telescope.builtin'.quickfix{layout_strategy='vertical', layout_config={preview_height=0.5}}<CR>", opts)
+    ":lua require'telescope.builtin'.quickfix{fname_width=70,layout_strategy='vertical', layout_config={preview_height=0.5}}<CR>"
+    , opts)
 -- <C-d> - preview down
 -- <C-u> - preview up
 
