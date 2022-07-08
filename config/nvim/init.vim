@@ -74,15 +74,18 @@ Plug 'tweekmonster/django-plus.vim'
 Plug 'preservim/tagbar'
 Plug 'tpope/vim-fugitive'
 Plug 'shumphrey/fugitive-gitlab.vim'
-Plug 'hoob3rt/lualine.nvim'
 Plug 'glepnir/galaxyline.nvim' , {'branch': 'main'}
-Plug 'feline-nvim/feline.nvim'
 " debugger
 Plug 'mfussenegger/nvim-dap'
+Plug 'leoluz/nvim-dap-go'
 " tests
+Plug 'antoinemadec/FixCursorHold.nvim'
+Plug 'nvim-neotest/neotest'
+Plug 'nvim-neotest/neotest-go'
+Plug 'nvim-neotest/neotest-python'
+Plug 'nvim-neotest/neotest-plenary'
 Plug 'vim-test/vim-test'
 Plug 'rcarriga/vim-ultest', { 'do': ':UpdateRemotePlugins' }
-Plug 'xiyaowong/nvim-transparent'
 
 " LSP
 Plug 'neovim/nvim-lspconfig'
@@ -100,7 +103,6 @@ Plug 'akinsho/bufferline.nvim'
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'kyazdani42/nvim-tree.lua'
 Plug 'mfussenegger/nvim-lint'
-"Plug 'tanvirtin/vgit.nvim'
 " Rust
 Plug 'simrat39/rust-tools.nvim'
 Plug 'nvim-lua/popup.nvim'
@@ -227,7 +229,7 @@ nmap [h <Plug>(GitGutterPrevHunk)
 nnoremap <silent> <leader>dc :lua require'dap'.continue()<CR>
 nnoremap <silent> ]d :lua require'dap'.step_over()<CR>
 nnoremap <silent> [d :lua require'dap'.step_out()<CR>
-nnoremap <silent> <leader>l :lua require'dap'.step_into()<CR>
+nnoremap <silent> ]i :lua require'dap'.step_into()<CR>
 nnoremap <silent> <leader>db :lua require'dap'.toggle_breakpoint()<CR>
 nnoremap <silent> <leader>dr :lua require'dap'.repl.open()<CR>
 	" end debug
@@ -278,20 +280,18 @@ nnoremap <silent> <leader>ds :lua setupDebug()<CR>
 nnoremap <silent> <leader>dx :lua closeDebug()<CR>
 
 " vim-test
-"nmap <silent> <leader>tn :TestNearest<CR>
-"nmap <silent> <leader>tf :TestFile<CR>
-let test#go#gotest#options = "-count=1 -timeout=60s -v"
-let test#python#runner = 'pytest'
-let test#python#pytest#options = "--dc=Local --ds=gateway.settings_local --color=yes --reuse-db"
-let test#rust#cargotest#options = "-- --nocapture"
-nmap <leader>tn <Plug>(ultest-run-nearest)
-nmap <leader>td <Plug>(ultest-debug-nearest)
-nmap <leader>ts <Plug>(ultest-summary-toggle)
-nmap <leader>to <Plug>(ultest-output-jump)
-nmap <leader>ta <Plug>(ultest-attach)
-nmap <leader>tf <Plug>(ultest-run-file)
-	" end
-nmap <leader>te <Plug>(ultest-stop-file)
+" let test#go#gotest#options = "-count=1 -timeout=60s -v"
+" let test#python#runner = 'pytest'
+" let test#python#pytest#options = "--dc=Local --ds=gateway.settings_local --color=yes --reuse-db"
+" let test#rust#cargotest#options = "-- --nocapture"
+" nmap <leader>tn <Plug>(ultest-run-nearest)
+" nmap <leader>td <Plug>(ultest-debug-nearest)
+" nmap <leader>ts <Plug>(ultest-summary-toggle)
+" nmap <leader>to <Plug>(ultest-output-jump)
+" nmap <leader>ta <Plug>(ultest-attach)
+" nmap <leader>tf <Plug>(ultest-run-file)
+" 	" end
+" nmap <leader>te <Plug>(ultest-stop-file)
 
 " ___________________________________________________________________________________
 " LUA dap
@@ -435,4 +435,6 @@ EOF
 
 lua <<EOF
 require('lsp_setup')
+require('neotest_cfg')
+require('debugger')
 EOF

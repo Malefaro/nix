@@ -137,8 +137,6 @@ in
         unset LESS
 
         export POWERLEVEL9K_MODE="nerdfont-complete"
-        export DEBUG=true
-        export LOG_LEVEL=debug
         source $HOME/.profile
         export PATH=$PATH:/usr/local/go/bin
         export GOPATH=~/GoLang
