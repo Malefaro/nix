@@ -1,8 +1,8 @@
 require('neotest').setup({
     floating = {
         border = "rounded",
-        max_height = 0.8,
-        max_width = 0.8,
+        max_height = 0.85,
+        max_width = 0.85,
         options = {}
     },
     adapters = {
@@ -11,8 +11,6 @@ require('neotest').setup({
             args = { "--dc=Local", "--ds=gateway.settings_local", "--color=yes", "--reuse-db" }
         }),
         require('neotest-go')({
-            dap = { justMyCode = false },
-            args = { "-v" },
         }),
         require('neotest-plenary'),
     },

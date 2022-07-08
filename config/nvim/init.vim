@@ -85,7 +85,7 @@ Plug 'nvim-neotest/neotest-go'
 Plug 'nvim-neotest/neotest-python'
 Plug 'nvim-neotest/neotest-plenary'
 Plug 'vim-test/vim-test'
-Plug 'rcarriga/vim-ultest', { 'do': ':UpdateRemotePlugins' }
+" Plug 'rcarriga/vim-ultest', { 'do': ':UpdateRemotePlugins' }
 
 " LSP
 Plug 'neovim/nvim-lspconfig'
@@ -357,58 +357,6 @@ dap.adapters.go = function(callback, config)
     } 
 }
 
-require("ultest").setup({
-	builders = {
-	  ['python#pytest'] = function (cmd)
-		-- The command can start with python command directly or an env manager
-		local non_modules = {'python', 'pipenv', 'poetry'}
-		-- Index of the python module to run the test.
-		local module
-		if vim.tbl_contains(non_modules, cmd[1]) then
-		  module = cmd[3]
-		else
-		  module = cmd[1]
-		end
-		-- Remaining elements are arguments to the module
-		local args = vim.list_slice(cmd, module_index + 1)
-		return {
-		  dap = {
-			type = 'python',
-			request = 'launch',
-			module = module,
-			args = args
-		  }
-		}
-	  end,
-	  ["go#gotest"] = function(cmd)
-		local args = {}
-		for i = 3, #cmd - 1, 1 do
-		  local arg = cmd[i]
-		  if vim.startswith(arg, "-") then
-			-- Delve requires test flags be prefix with 'test.'
-			arg = "-test." .. string.sub(arg, 2)
-		  end
-          if arg ~= "-test.timeout" then
-              args[#args + 1] = arg
-          end
-		end
-		return {
-		  dap = {
-			type = "go",
-			request = "launch",
-			mode = "test",
-			-- program = "./${relativeFileDirname}",
-			program = "./${relativeFileDirname}",
-			dlvToolPath = vim.fn.exepath("dlv"),
-			args = args
-		  },
-		  parse_result = function(lines)
-			return lines[#lines] == "FAIL" and 1 or 0
-		  end
-		}
-	  end
-	}
-})
 
 function dump(o)
    if type(o) == 'table' then
@@ -434,7 +382,7 @@ EOF
 " Import lua config
 
 lua <<EOF
-require('lsp_setup')
 require('neotest_cfg')
 require('debugger')
+require('lsp_setup')
 EOF
