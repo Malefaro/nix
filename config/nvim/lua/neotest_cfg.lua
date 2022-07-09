@@ -11,6 +11,7 @@ require('neotest').setup({
             args = { "--dc=Local", "--ds=gateway.settings_local", "--color=yes", "--reuse-db" }
         }),
         require('neotest-go')({
+            args = { "-count=1", "-timeout=60s" }
         }),
         require('neotest-plenary'),
     },
