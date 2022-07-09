@@ -188,6 +188,8 @@ vmap K 5k
 vmap L 3l
 vmap H 3h
 
+nmap Q :q<CR>
+
 
 " exist to normal mode in terminal
 tnoremap <Esc> <C-\><C-n>
