@@ -30,7 +30,7 @@ in
       git
       ripgrep
       tmux
-      alacritty
+      # kitty
       direnv
       gopls
       universal-ctags
@@ -55,10 +55,11 @@ in
     source = ./config/nvim/lua;
     recursive = true;
   };
-  xdg.configFile.alacritty = {
-    source = ./config/alacritty;
+  xdg.configFile.kitty = {
+    source = ./config/kitty;
     recursive = true;
   };
+
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage
   # when a new Home Manager release introduces backwards
@@ -189,12 +190,4 @@ set -g @dracula-show-timezone false
 		}
     ];
   };
-
-  home.file."Applications/home-manager".source = let
-  apps = pkgs.buildEnv {
-    name = "home-manager-applications";
-    paths = config.home.packages;
-    pathsToLink = "/Applications";
-  };
-  in lib.mkIf pkgs.stdenv.targetPlatform.isDarwin "${apps}/Applications";
 }
